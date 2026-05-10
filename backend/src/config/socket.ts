@@ -4,15 +4,22 @@ import pino from 'pino';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const logger = pino();
 
 // Read public key for JWT verification
 let PUBLIC_KEY = '';
 try {
-  PUBLIC_KEY = process.env.JWT_PUBLIC_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/public.pem'), 'utf8');
+  if (process.env.JWT_PUBLIC_KEY) {
+    PUBLIC_KEY = process.env.JWT_PUBLIC_KEY.replace(/\\n/g, '\n');
+  } else {
+    PUBLIC_KEY = fs.readFileSync(path.join(__dirname, '../../keys/public.pem'), 'utf8');
+  }
 } catch (e) {
-  console.warn('[WARN] JWT_PUBLIC_KEY missing, socket authentication will fail. Error:', e);
+  console.warn('[WARN] JWT_PUBLIC_KEY missing, socket authentication will fail.');
 }
 
 

@@ -83,6 +83,9 @@ app.use('/api/v1/invoices', invoicesRoutes);
 // Health check
 app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date() }));
 
+// Root route
+app.get('/', (_req, res) => res.send('Welcome to Trust Nepal Escrow API. Visit /health for status.'));
+
 // Error handler (must be last)
 app.use(errorHandler);
 

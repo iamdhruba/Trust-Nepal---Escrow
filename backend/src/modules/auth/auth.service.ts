@@ -1,20 +1,35 @@
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import crypto from 'crypto';
 import { OTPModel } from './otp.model.js';
 import { UserModel } from '../user/user.model.js';
 import { UnauthorizedError, AppError } from '../../errors/AppError.js';
 import { getFirebaseAdmin } from '../../config/firebase.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 let PRIVATE_KEY = '';
 let PUBLIC_KEY = '';
 
 try {
-  PRIVATE_KEY = process.env.JWT_PRIVATE_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/private.pem'), 'utf8');
-  PUBLIC_KEY = process.env.JWT_PUBLIC_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/public.pem'), 'utf8');
+  // Try environment variables first (for production)
+  if (process.env.JWT_PRIVATE_KEY) {
+    PRIVATE_KEY = process.env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n');
+  } else {
+    // Fallback to local file relative to this script
+    PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../../../keys/private.pem'), 'utf8');
+  }
+
+  if (process.env.JWT_PUBLIC_KEY) {
+    PUBLIC_KEY = process.env.JWT_PUBLIC_KEY.replace(/\\n/g, '\n');
+  } else {
+    // Fallback to local file relative to this script
+    PUBLIC_KEY = fs.readFileSync(path.join(__dirname, '../../../keys/public.pem'), 'utf8');
+  }
 } catch (error) {
-  console.warn('[WARN] Could not load JWT RSA keys. Error:', error);
+  console.warn('[WARN] JWT RSA keys not loaded from environment or local files. signing/verification will fail.');
 }
 
 // In-memory rate limiting for OTP
