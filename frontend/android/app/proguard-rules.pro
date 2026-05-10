@@ -1,0 +1,2 @@
+-keep class kotlinx.parcelize.** { *; }
+-dontwarn kotlinx.parcelize.**

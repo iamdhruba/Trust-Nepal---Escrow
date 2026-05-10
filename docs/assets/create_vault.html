@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Work+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#643900",
+                      "tertiary-fixed": "#efdbff",
+                      "on-surface-variant": "#404a3a",
+                      "on-primary": "#ffffff",
+                      "on-primary-container": "#0c4700",
+                      "inverse-primary": "#7fdc63",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#176e00",
+                      "on-secondary-fixed": "#2c1600",
+                      "secondary-container": "#fe9800",
+                      "background": "#fcf9f8",
+                      "inverse-on-surface": "#f3f0ef",
+                      "outline-variant": "#bfcab6",
+                      "secondary-fixed": "#ffdcbd",
+                      "outline": "#707a69",
+                      "on-secondary-fixed-variant": "#693c00",
+                      "secondary-fixed-dim": "#ffb86f",
+                      "surface": "#fcf9f8",
+                      "surface-container-highest": "#e5e2e1",
+                      "tertiary-fixed-dim": "#dab9ff",
+                      "on-tertiary-fixed-variant": "#5c2d91",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "secondary": "#8a5100",
+                      "surface-container": "#f0eded",
+                      "tertiary": "#7547ab",
+                      "surface-container-high": "#eae7e7",
+                      "on-tertiary-fixed": "#2a0053",
+                      "on-error-container": "#93000a",
+                      "on-background": "#1c1b1b",
+                      "surface-dim": "#dcd9d9",
+                      "on-surface": "#1c1b1b",
+                      "primary-fixed-dim": "#7fdc63",
+                      "on-primary-fixed": "#032100",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#176e00",
+                      "primary-container": "#60bb46",
+                      "surface-container-low": "#f6f3f2",
+                      "tertiary-container": "#c291fb",
+                      "on-tertiary-container": "#512186",
+                      "surface-variant": "#e5e2e1",
+                      "surface-bright": "#fcf9f8",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#9af97b",
+                      "on-primary-fixed-variant": "#0f5300",
+                      "inverse-surface": "#313030",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "xs": "8px",
+                      "gutter": "16px",
+                      "md": "16px",
+                      "sm": "12px",
+                      "margin-mobile": "16px",
+                      "base": "4px",
+                      "margin-desktop": "32px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "title-sm": ["Work Sans"],
+                      "label-caps": ["Work Sans"],
+                      "body-md": ["Work Sans"]
+              },
+              "fontSize": {
+                      "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-slate-100 dark:border-slate-800 bg-white/80 backdrop-blur-md shadow-sm h-16 flex items-center">
+<div class="flex justify-between items-center px-4 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform text-slate-600">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg text-slate-900">Create Vault</h1>
+</div>
+<div class="text-xl font-black text-green-600 tracking-tight">NepalTrust</div>
+<div class="flex items-center gap-2">
+<span class="bg-green-600 text-white rounded-full px-3 py-1 font-['Plus_Jakarta_Sans'] font-bold text-xs">ने</span>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-32 px-4 max-w-md mx-auto">
+<!-- Visual Anchor -->
+<div class="mb-8 p-6 rounded-3xl bg-primary-container/10 border border-primary-container/20 flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h2 class="font-headline-md text-title-sm text-on-surface">Secure Escrow</h2>
+<p class="text-label-caps text-on-surface-variant uppercase">Funds held safely until delivery</p>
+</div>
+</div>
+<!-- Create Vault Form -->
+<div class="space-y-6">
+<!-- Vault Title -->
+<div class="space-y-2">
+<label class="font-label-caps text-on-surface-variant px-1 uppercase tracking-wider">Vault Title</label>
+<div class="relative">
+<input class="w-full h-14 px-4 rounded-xl bg-surface-container-low border-outline-variant focus:border-primary focus:ring-0 transition-all font-body-md text-on-surface" placeholder="e.g., Freelance Web Design" type="text"/>
+</div>
+</div>
+<!-- Amount -->
+<div class="space-y-2">
+<label class="font-label-caps text-on-surface-variant px-1 uppercase tracking-wider">Amount (NPR)</label>
+<div class="relative flex items-center">
+<span class="absolute left-4 font-bold text-on-surface">Rs.</span>
+<input class="w-full h-14 pl-12 pr-4 rounded-xl bg-surface-container-low border-outline-variant focus:border-primary focus:ring-0 transition-all font-display-lg text-headline-md text-on-surface" placeholder="0.00" type="number"/>
+</div>
+</div>
+<!-- Counterparty -->
+<div class="space-y-2">
+<label class="font-label-caps text-on-surface-variant px-1 uppercase tracking-wider">Counterparty Phone</label>
+<div class="relative">
+<input class="w-full h-14 px-4 rounded-xl bg-surface-container-low border-outline-variant focus:border-primary focus:ring-0 transition-all font-body-md text-on-surface" placeholder="98XXXXXXXX" type="tel"/>
+<span class="material-symbols-outlined absolute right-4 top-4 text-outline">contact_page</span>
+</div>
+</div>
+<!-- Escrow Details Breakdown Card -->
+<div class="bg-white rounded-2xl p-5 shadow-sm border border-outline-variant/30 space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-body-md text-on-surface-variant">Subtotal</span>
+<span class="font-title-sm text-on-surface">NPR 0.00</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-1">
+<span class="text-body-md text-on-surface-variant">Platform Fee</span>
+<span class="material-symbols-outlined text-sm text-outline">info</span>
+</div>
+<span class="font-title-sm text-secondary">1.5%</span>
+</div>
+<div class="pt-4 border-t border-dashed border-outline-variant flex justify-between items-center">
+<span class="font-label-caps text-primary uppercase">Total to Lock</span>
+<span class="font-display-lg text-headline-md text-primary">NPR 0.00</span>
+</div>
+</div>
+<!-- Contextual Image Representation -->
+<div class="rounded-2xl overflow-hidden h-32 relative group">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A macro photograph showing a secure digital lock glowing with a vibrant green light against a dark, professional background. The image is clean and minimalist, featuring soft bokeh highlights and sharp metallic textures that evoke a sense of high-security financial technology and modern corporate reliability. The lighting is sophisticated, emphasizing the precision and safety of the NepalTrust vault system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0t-o_AAb90I3JcpOnMo199Lt68x6U_gFCC8dy3h8zh163CQKGjOiqLOHtZo0TEDAQgXuonwk4wrn-M1q45wyIOET5tVmAB5e7HCa-uR0Bdje7HVeoljfKW0xfw9LEyR8zHPFV9uDBPQQrvTiy4cTk9240sLW6G2ZEiBDo2uFH4Fs7IP4W_u29MUc7H3Fv3KBWTpjGucBrWt0N2mESZl8LP6RwFO_xHZBPDi6_fQVVKM1xd1h5oqwI_NmTuuqx2LqZCXwC1S4WpTt0"/>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center pointer-events-none">
+<p class="text-white font-bold tracking-widest text-[10px] uppercase bg-primary px-3 py-1 rounded-full">Secure Infrastructure</p>
+</div>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="mt-8">
+<button class="w-full bg-secondary-container hover:bg-secondary text-white font-headline-md py-4 rounded-2xl shadow-lg active:scale-95 transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">enhanced_encryption</span>
+                Create Secure Vault
+            </button>
+<p class="text-center text-label-caps text-outline mt-4 px-6">
+                By clicking "Create Secure Vault", you agree to the NepalTrust Escrow Terms &amp; Conditions.
+            </p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-2 py-3 pb-safe bg-white border-t border-slate-100 rounded-t-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50">
+<button class="flex flex-col items-center justify-center text-green-600 bg-green-50 rounded-xl px-2 py-1 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 hover:text-green-500 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider mt-1">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 hover:text-green-500 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider mt-1">Scan</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 hover:text-green-500 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider mt-1">Services</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 hover:text-green-500 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: nepaltrust-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./infra/docker/mongo-init.js:/docker-entrypoint-initdb.d/init.js:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: nepaltrust
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - nepaltrust-network
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: nepaltrust-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - nepaltrust-network
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nepaltrust-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 3000
+      MONGO_URI: mongodb://admin:password123@mongodb:27017/nepaltrust?authSource=admin
+      REDIS_URL: redis://redis:6379
+      ESEWA_SECRET: ${ESEWA_SECRET:-8gBm/:&EnhH.1/q}
+      ESEWA_PRODUCT_CODE: ${ESEWA_PRODUCT_CODE:-EPAYTEST}
+      KHALTI_SECRET: ${KHALTI_SECRET:-test_secret_key_changeme}
+      AUDIT_SECRET: ${AUDIT_SECRET:-dev-audit-secret-changeme-in-production}
+      APP_DEEP_LINK: ${APP_DEEP_LINK:-http://localhost:5173}
+      AWS_REGION: ${AWS_REGION:-ap-south-1}
+      S3_BUCKET: ${S3_BUCKET:-nepaltrust-uploads-dev}
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend/keys:/app/keys:ro
+      - uploads_data:/app/uploads
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - nepaltrust-network
+
+networks:
+  nepaltrust-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:
+  uploads_data:

@@ -1,0 +1,79 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build outputs
+dist/
+build/
+bin/
+obj/
+out/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+
+# Android specific
+**/android/app/google-services.json
+**/android/app/*.json
+**/android/local.properties
+**/android/key.properties
+**/android/app/release/
+**/android/app/debug/
+**/android/.gradle/
+
+# iOS specific
+**/ios/Runner/GeneratedPluginRegistrant.h
+**/ios/Runner/GeneratedPluginRegistrant.m
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/.generated/
+**/Pods/
+*.xcworkspace
+*.xcodeproj
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Docker
+.docker/
+
+# Ignore the specific Firebase Admin SDK JSON
+trustnepal-ab17e-firebase-adminsdk-fbsvc-90d092e2b4.json
+**/trustnepal-ab17e-firebase-adminsdk-fbsvc-*.json
+
+# Documentation and temporary files
+fix.md
+prompt.md
+stitch_assets/

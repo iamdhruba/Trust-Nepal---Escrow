@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Secure Vault | NepalTrust</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .institutional-shadow {
+            box-shadow: 0 4px 12px 0px rgba(15, 23, 42, 0.04), 0 20px 24px -4px rgba(15, 23, 42, 0.03);
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f7f9fb;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2d3133",
+                    "error": "#ba1a1a",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-surface-variant": "#45464d",
+                    "tertiary-fixed": "#ffe24c",
+                    "surface-bright": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e0e3e5",
+                    "primary-container": "#131b2e",
+                    "tertiary": "#6d5e00",
+                    "surface-container": "#eceef0",
+                    "on-surface": "#191c1e",
+                    "on-tertiary-container": "#4a3f00",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "primary-fixed": "#dae2fd",
+                    "secondary": "#006c49",
+                    "background": "#f7f9fb",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#7c839b",
+                    "inverse-primary": "#bec6e0",
+                    "surface-tint": "#565e74",
+                    "primary-fixed-dim": "#bec6e0",
+                    "on-secondary-fixed-variant": "#005236",
+                    "outline-variant": "#c6c6cd",
+                    "surface-container-low": "#f2f4f6",
+                    "surface": "#f7f9fb",
+                    "on-secondary-fixed": "#002113",
+                    "tertiary-fixed-dim": "#e2c62d",
+                    "surface-container-high": "#e6e8ea",
+                    "tertiary-container": "#c5ab02",
+                    "on-primary-fixed": "#131b2e",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#76777d",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-container": "#00714d",
+                    "secondary-container": "#6cf8bb",
+                    "on-tertiary-fixed-variant": "#524600",
+                    "on-background": "#191c1e",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-tertiary-fixed": "#211b00",
+                    "primary": "#000000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "stack-xs": "8px",
+                    "stack-md": "24px",
+                    "gutter": "24px",
+                    "section-padding": "80px",
+                    "container-max": "1280px",
+                    "unit": "4px",
+                    "stack-lg": "48px"
+            },
+            "fontFamily": {
+                    "nepali-body": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "h3": ["Plus Jakarta Sans"],
+                    "label-caps": ["Plus Jakarta Sans"],
+                    "h1": ["Plus Jakarta Sans"],
+                    "h2": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "nepali-body": ["17px", {"lineHeight": "1.8", "letterSpacing": "0", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white dark:bg-slate-950 shadow-[0_4px_12px_0px_rgba(15,23,42,0.04)] border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between px-6 h-16 w-full max-w-[1280px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-slate-50 p-2 rounded-full transition-colors active:scale-95 duration-200">arrow_back</button>
+<span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50">NepalTrust</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<span class="flex items-center gap-2 px-3 py-1 bg-secondary-container/20 rounded-full border border-secondary/10">
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-caps text-label-caps text-secondary">NRB-72 CERTIFIED</span>
+</span>
+<span class="flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">lock</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">AES-256</span>
+</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<img alt="User Profile" class="w-full h-full rounded-full" data-alt="A professional headshot of a young Nepalese business executive in a modern workspace, with soft natural light illuminating their face. The image is clean and minimalist, reflecting a secure financial institutional brand identity. The background is slightly blurred with a bright, airy aesthetic typical of a high-end fintech application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1faidMBfYMhsWaI0BnfI2ly9fghHLRFRy8cnkESZp0zkc9f_cHVOqD-IBVJO03llHYBN8dec98KqyWnTiCcpC52eiklzxDgfA3D_gLFXKwrHvxfcplXTtkvj3hKGly2OZkUyLlNf7StnF-URrfqQFL4LDqpVj_ELDubF4qDXp_x8_74I2SE9guDLf4_QV-__CS4K8zZPewT8ampY_cTSvqPHXg_HgfgKJpRZO_NHZkdKzxqpdte7QkxsmeYX294C-2StEZ3deXwPX"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 px-4 max-w-[1280px] mx-auto">
+<!-- Page Title -->
+<div class="mb-10 text-center md:text-left">
+<h1 class="font-h1 text-h2 md:text-h1 text-primary">Initialize Secure Vault</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Establish an institutional-grade escrow for your asset transfers.</p>
+</div>
+<!-- Progress Stepper -->
+<div class="mb-12 max-w-2xl mx-auto">
+<div class="flex items-center justify-between relative">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-container-highest -z-10 -translate-y-1/2"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold shadow-lg">1</div>
+<span class="font-label-caps text-label-caps text-secondary">SPECIFICATIONS</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold border-4 border-surface">2</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">BENEFICIARY</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold border-4 border-surface">3</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">REVIEW</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Form Sections -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Vault Specifications Card -->
+<section class="bg-surface-container-lowest p-8 rounded-xl institutional-shadow border-t-2 border-tertiary-container">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary">account_balance_wallet</span>
+<h3 class="font-h3 text-h3 text-on-surface">Vault Specifications</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">VAULT TITLE / भल्ट शीर्षक</label>
+<input class="w-full bg-surface rounded-lg border border-outline-variant p-3 focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all" placeholder="e.g. Real Estate Acquisition" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">ASSET CLASS / सम्पत्ति प्रकार</label>
+<select class="w-full bg-surface rounded-lg border border-outline-variant p-3 focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all">
+<option>Select Category</option>
+<option>Commercial Real Estate</option>
+<option>Corporate Equity</option>
+<option>Industrial Goods</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant text-secondary">ESCROW AMOUNT / एस्क्रो रकम</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-on-surface-variant">NPR</span>
+<input class="w-full bg-surface rounded-lg border-2 border-secondary/20 p-4 pl-16 text-xl font-bold text-on-surface focus:border-secondary outline-none transition-all" placeholder="0.00" type="number"/>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">Minimum vault threshold: NPR 500,000.00</p>
+</div>
+</div>
+</section>
+<!-- Beneficiary Identification Card -->
+<section class="bg-surface-container-lowest p-8 rounded-xl institutional-shadow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary">person_check</span>
+<h3 class="font-h3 text-h3 text-on-surface">Beneficiary Identification</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">FULL LEGAL NAME / पूरा नाम</label>
+<input class="w-full bg-surface rounded-lg border border-outline-variant p-3 focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all" placeholder="As per Citizenship/PAN" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">ID TYPE / परिचय पत्र प्रकार</label>
+<select class="w-full bg-surface rounded-lg border border-outline-variant p-3 focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all">
+<option>Citizenship Card</option>
+<option>National ID</option>
+<option>Company Registration</option>
+</select>
+</div>
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">BANK ACCOUNT NUMBER / बैंक खाता नम्बर</label>
+<input class="w-full bg-surface rounded-lg border border-outline-variant p-3 focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all" placeholder="Enter verified bank account" type="text"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Financial Breakdown Sidebar -->
+<div class="lg:col-span-4">
+<div class="sticky top-24 space-y-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl institutional-shadow border border-slate-100">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-6 border-b border-surface-container pb-4">FINANCIAL SUMMARY</h4>
+<div class="space-y-4 mb-6">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Principal Amount</span>
+<span class="font-bold text-on-surface">NPR 0.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">NepalTrust Service Fee (0.5%)</span>
+<span class="font-bold text-on-surface">NPR 0.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Regulatory Levy</span>
+<span class="font-bold text-on-surface">NPR 150.00</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg mb-8">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-secondary">TOTAL LIABILITY</span>
+<span class="font-h3 text-h3 text-secondary">NPR 150.00</span>
+</div>
+</div>
+<button class="w-full bg-secondary text-on-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-secondary/20 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
+                            Initialize Secure Vault
+                        </button>
+<p class="text-center text-[11px] text-on-surface-variant mt-4 leading-relaxed">
+                            By initializing, you agree to the <a class="underline" href="#">NepalTrust Escrow Protocols</a> and NRB Regulatory Compliance guidelines.
+                        </p>
+</div>
+<!-- Security Banner -->
+<div class="bg-primary-container p-5 rounded-xl text-white">
+<div class="flex items-start gap-4">
+<div class="bg-white/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-secondary-fixed">security</span>
+</div>
+<div>
+<h5 class="text-sm font-bold">Institutional Security</h5>
+<p class="text-[12px] opacity-70 mt-1">Funds are held in a segregated NRB-monitored nodal account with multi-signature release triggers.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 rounded-t-2xl bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-[0_-8px_24px_rgba(15,23,42,0.06)]">
+<div class="flex justify-around items-center w-full px-4 pt-3 pb-6">
+<div class="flex flex-col items-center justify-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-[11px] uppercase tracking-wider">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-caps text-[11px] uppercase tracking-wider">My Vaults</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="font-label-caps text-[11px] uppercase tracking-wider">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-[11px] uppercase tracking-wider">Activity</span>
+</div>
+<div class="flex flex-col items-center justify-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[11px] uppercase tracking-wider">Profile</span>
+</div>
+</div>
+</nav>
+</body></html>
