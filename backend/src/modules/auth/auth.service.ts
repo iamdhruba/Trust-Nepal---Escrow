@@ -10,6 +10,20 @@ import { getFirebaseAdmin } from '../../config/firebase.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Helper to find keys directory by walking up from current file
+const findKeysDir = (startDir: string) => {
+  let current = startDir;
+  for (let i = 0; i < 5; i++) { // Search up to 5 levels
+    const keysPath = path.join(current, 'keys');
+    if (fs.existsSync(keysPath)) return keysPath;
+    current = path.dirname(current);
+  }
+  // Fallback to process.cwd() if not found in parent hierarchy
+  return path.join(process.cwd(), 'keys');
+};
+
+const keysDir = findKeysDir(__dirname);
+
 let PRIVATE_KEY = '';
 let PUBLIC_KEY = '';
 
@@ -18,18 +32,16 @@ try {
   if (process.env.JWT_PRIVATE_KEY) {
     PRIVATE_KEY = process.env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n');
   } else {
-    // Fallback to local file relative to this script
-    PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../../../keys/private.pem'), 'utf8');
+    PRIVATE_KEY = fs.readFileSync(path.join(keysDir, 'private.pem'), 'utf8');
   }
 
   if (process.env.JWT_PUBLIC_KEY) {
     PUBLIC_KEY = process.env.JWT_PUBLIC_KEY.replace(/\\n/g, '\n');
   } else {
-    // Fallback to local file relative to this script
-    PUBLIC_KEY = fs.readFileSync(path.join(__dirname, '../../../keys/public.pem'), 'utf8');
+    PUBLIC_KEY = fs.readFileSync(path.join(keysDir, 'public.pem'), 'utf8');
   }
 } catch (error) {
-  console.warn('[WARN] JWT RSA keys not loaded from environment or local files. signing/verification will fail.');
+  console.warn('[WARN] JWT RSA keys not loaded from environment or local files. Error:', error);
 }
 
 // In-memory rate limiting for OTP

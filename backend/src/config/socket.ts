@@ -8,6 +8,19 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Helper to find keys directory
+const findKeysDir = (startDir: string) => {
+  let current = startDir;
+  for (let i = 0; i < 5; i++) {
+    const keysPath = path.join(current, 'keys');
+    if (fs.existsSync(keysPath)) return keysPath;
+    current = path.dirname(current);
+  }
+  return path.join(process.cwd(), 'keys');
+};
+
+const keysDir = findKeysDir(__dirname);
+
 const logger = pino();
 
 // Read public key for JWT verification
@@ -16,10 +29,10 @@ try {
   if (process.env.JWT_PUBLIC_KEY) {
     PUBLIC_KEY = process.env.JWT_PUBLIC_KEY.replace(/\\n/g, '\n');
   } else {
-    PUBLIC_KEY = fs.readFileSync(path.join(__dirname, '../../keys/public.pem'), 'utf8');
+    PUBLIC_KEY = fs.readFileSync(path.join(keysDir, 'public.pem'), 'utf8');
   }
 } catch (e) {
-  console.warn('[WARN] JWT_PUBLIC_KEY missing, socket authentication will fail.');
+  console.warn('[WARN] JWT_PUBLIC_KEY missing, socket authentication will fail. Error:', e);
 }
 
 
