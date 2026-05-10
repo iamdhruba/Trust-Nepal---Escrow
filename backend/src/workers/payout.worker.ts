@@ -9,8 +9,8 @@ const logger = pino({ name: 'payout-worker' });
 export const definePayoutJobs = () => {
   const agenda = getAgenda();
 
-  agenda.define('payout.initiate', async (job) => {
-    const { vaultId, amount } = job.attrs.data as any;
+  agenda.define('payout.initiate', async (job: any) => {
+    const { vaultId, amount } = job.attrs.data;
     logger.info({ vaultId, amount }, 'Processing payout');
     
     try {
@@ -21,9 +21,9 @@ export const definePayoutJobs = () => {
       if (!seller) throw new Error('Seller not found');
 
       // CRITICAL SECURITY FIX: Strict KYC & Bank Details Enforcement
-      if (seller.kyc?.status !== 'VERIFIED') {
-        logger.error({ vaultId, sellerId: seller._id, kycStatus: seller.kyc?.status }, 'Payout blocked: Seller KYC is not VERIFIED. Funds frozen until KYC completion.');
-        throw new Error('Payout blocked: Seller KYC is not VERIFIED.');
+      if (seller.kyc?.status !== 'APPROVED') {
+        logger.error({ vaultId, sellerId: seller._id, kycStatus: seller.kyc?.status }, 'Payout blocked: Seller KYC is not APPROVED. Funds frozen until KYC completion.');
+        throw new Error('Payout blocked: Seller KYC is not APPROVED.');
       }
 
       if (!seller.bankDetails?.accountNumber || !seller.bankDetails?.bankName) {
@@ -72,8 +72,8 @@ export const definePayoutJobs = () => {
   });
 
   // ── REFUND JOB: Returns funds to buyer ──
-  agenda.define('payout.refund', async (job) => {
-    const { vaultId, amount } = job.attrs.data as any;
+  agenda.define('payout.refund', async (job: any) => {
+    const { vaultId, amount } = job.attrs.data;
     logger.info({ vaultId, amount }, 'Processing refund to buyer');
     
     try {

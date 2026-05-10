@@ -8,8 +8,8 @@ const vaultService = new VaultService();
 export const defineVaultTimeoutJobs = () => {
   const agenda = getAgenda();
 
-  agenda.define('vault-timeout', async (job) => {
-    const { vaultId, action } = job.attrs.data as any;
+  agenda.define('vault-timeout', async (job: any) => {
+    const { vaultId, action } = job.attrs.data;
     logger.info({ vaultId, action }, 'Processing vault timeout');
 
     try {

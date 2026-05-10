@@ -6,8 +6,8 @@ const logger = pino({ name: 'refund-worker' });
 export const defineRefundJobs = () => {
   const agenda = getAgenda();
 
-  agenda.define('refund.initiate', async (job) => {
-    const { vaultId, amount } = job.attrs.data as any;
+  agenda.define('refund.initiate', async (job: any) => {
+    const { vaultId, amount } = job.attrs.data;
     logger.info({ vaultId, amount }, 'Initiating payment refund (stub)');
 
     try {
