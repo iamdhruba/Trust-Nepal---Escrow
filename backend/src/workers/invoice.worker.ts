@@ -85,8 +85,8 @@ function buildInvoiceHTML(vault: any, buyer: any, seller: any): string {
 export const defineInvoiceJobs = () => {
   const agenda = getAgenda();
 
-  agenda.define('invoice.generate', async (job) => {
-    const { vaultId } = job.attrs.data as any;
+  agenda.define('invoice.generate', async (job: any) => {
+    const { vaultId } = job.attrs.data;
     logger.info({ vaultId }, 'Generating invoice');
 
     const vault = await VaultModel.findById(vaultId)

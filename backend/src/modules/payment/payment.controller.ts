@@ -59,7 +59,7 @@ export const esewaCallback = async (req: Request, res: Response, next: NextFunct
 export const esewaWebCheckout = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { intentId } = req.params;
-    const formHtml = await paymentService.generateEsewaForm(intentId);
+    const formHtml = await paymentService.generateEsewaForm(intentId!);
     res.send(formHtml);
   } catch (error) {
     next(error);

@@ -26,7 +26,7 @@ const storage = multerS3({
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key: function (req, file, cb) {
     const userId = (req as any).user?.sub || 'anonymous';
-    const purpose = req.body.purpose || 'misc';
+    const purpose = (req as any).body?.purpose || 'misc';
     const ext = path.extname(file.originalname);
     cb(null, `${purpose}/${userId}-${crypto.randomUUID()}${ext}`);
   }

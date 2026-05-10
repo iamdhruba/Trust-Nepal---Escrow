@@ -11,8 +11,8 @@ const logger = pino({ name: 'notification-worker' });
 export const defineNotificationJobs = () => {
   const agenda = getAgenda();
 
-  agenda.define('notification.send', async (job) => {
-    const { vaultId, state, buyerId, sellerId } = job.attrs.data as any;
+  agenda.define('notification.send', async (job: any) => {
+    const { vaultId, state, buyerId, sellerId } = job.attrs.data;
     
     console.log(`[WORKER] Received notification job for vault ${vaultId}, state ${state}`);
     logger.info({ vaultId, state }, 'Processing notification');

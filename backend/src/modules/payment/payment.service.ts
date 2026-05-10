@@ -200,7 +200,7 @@ export class PaymentService {
 
   async generateEsewaForm(intentId: string): Promise<string> {
     const intent = await PaymentIntentModel.findById(intentId);
-    if (!intent) throw new AppError('Payment intent not found', 404);
+    if (!intent) throw new AppError('Payment intent not found', 404, 'PAYMENT_NOT_FOUND');
 
     const esewaSecrets = await getEsewaSecrets();
     const product_code = esewaSecrets.product_code || 'EPAYTEST';

@@ -19,7 +19,7 @@ router.patch('/:id/resolve', authenticate, async (req, res, next) => {
   try {
     const adminId = (req as any).user.sub;
     // TODO: Add admin role check middleware
-    const dispute = await disputeService.resolveDispute(req.params.id, req.body, adminId);
+    const dispute = await disputeService.resolveDispute(req.params.id!, req.body, adminId);
     res.json({ success: true, data: dispute });
   } catch (error) {
     next(error);

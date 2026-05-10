@@ -4,7 +4,7 @@ import { AppError } from '../../errors/AppError.js';
 
 export const getMe = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const user = await UserModel.findById(req.user.id);
+    const user = await UserModel.findById((req as any).user.sub);
     if (!user) throw new AppError('User not found', 404, 'USER_NOT_FOUND');
     
     res.json({ status: 'success', data: { user } });
@@ -18,7 +18,7 @@ export const updateMe = async (req: Request, res: Response, next: NextFunction) 
     const { language, email } = req.body;
     
     const user = await UserModel.findByIdAndUpdate(
-      req.user.id,
+      (req as any).user.sub,
       { $set: { language, email } },
       { new: true, runValidators: true }
     );

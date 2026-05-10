@@ -97,7 +97,7 @@ router.get('/me/stats', authenticate, async (req, res, next) => {
 router.get('/lookup/:phone', authenticate, async (req, res, next) => {
   try {
     const { phone } = req.params;
-    const normalizedPhone = normalizePhone(phone);
+    const normalizedPhone = normalizePhone(phone!);
     const user = await UserModel.findOne({ phone: normalizedPhone }).select('kyc.fullName kyc.status bankDetails');
     
     if (!user) {

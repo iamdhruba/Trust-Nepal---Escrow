@@ -96,7 +96,7 @@ router.put('/disputes/:id/resolve', rbac(['ADMIN']), async (req, res, next) => {
 
     const { DisputeService } = await import('../dispute/dispute.service.js');
     const disputeService = new DisputeService();
-    const dispute = await disputeService.resolveDispute(req.params.id, { decision, reason }, (req as any).user.sub);
+    const dispute = await disputeService.resolveDispute(req.params.id!, { decision, reason }, (req as any).user.sub);
 
     res.json({ success: true, data: dispute });
   } catch (error) {

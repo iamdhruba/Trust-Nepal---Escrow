@@ -137,7 +137,7 @@ router.post('/:id/ship', authenticate, async (req, res, next) => {
     if (parsed.courierCode) vault.courierCode = parsed.courierCode;
     await vault.save();
 
-    const updated = await vaultService.transition(req.params.id, 'ship', actorId, 'SELLER', parsed);
+    const updated = await vaultService.transition(req.params.id!, 'ship', actorId, 'SELLER', parsed);
     res.json({ success: true, data: updated });
   } catch (error) {
     next(error);
@@ -152,7 +152,7 @@ router.post('/:id/deliver', authenticate, async (req, res, next) => {
 
     // If QR token provided, use the secure QR validation flow
     if (parsed.qrToken) {
-      const updated = await vaultService.validateDeliveryQR(req.params.id, parsed.qrToken, actorId);
+      const updated = await vaultService.validateDeliveryQR(req.params.id!, parsed.qrToken, actorId);
       return res.json({ success: true, data: updated });
     }
 
@@ -162,7 +162,7 @@ router.post('/:id/deliver', authenticate, async (req, res, next) => {
     if (vault.buyerId.toString() !== actorId) throw new AppError('Only the buyer can confirm delivery', 403, 'FORBIDDEN');
     if (vault.state !== VaultState.SHIPPED) throw new AppError('Vault must be SHIPPED to deliver', 422, 'INVALID_TRANSITION');
 
-    const updated = await vaultService.transition(req.params.id, 'deliver', actorId, 'BUYER');
+    const updated = await vaultService.transition(req.params.id!, 'deliver', actorId, 'BUYER');
     res.json({ success: true, data: updated });
   } catch (error) {
     next(error);
@@ -177,7 +177,7 @@ router.post('/:id/confirm', authenticate, async (req, res, next) => {
     if (!vault) throw new AppError('Vault not found', 404, 'VAULT_NOT_FOUND');
     if (vault.buyerId.toString() !== actorId) throw new AppError('Only the buyer can confirm', 403, 'FORBIDDEN');
 
-    const updated = await vaultService.transition(req.params.id, 'confirm', actorId, 'BUYER');
+    const updated = await vaultService.transition(req.params.id!, 'confirm', actorId, 'BUYER');
     res.json({ success: true, data: updated });
   } catch (error) {
     next(error);
@@ -193,7 +193,7 @@ router.post('/:id/cancel', authenticate, async (req, res, next) => {
     if (vault.buyerId.toString() !== actorId) throw new AppError('Only the buyer can cancel', 403, 'FORBIDDEN');
     if (vault.state !== VaultState.INITIATED) throw new AppError('Can only cancel before funding', 422, 'INVALID_TRANSITION');
 
-    const updated = await vaultService.transition(req.params.id, 'cancel', actorId, 'BUYER');
+    const updated = await vaultService.transition(req.params.id!, 'cancel', actorId, 'BUYER');
     res.json({ success: true, data: updated });
   } catch (error) {
     next(error);
@@ -209,7 +209,7 @@ router.post('/:id/dispute', authenticate, async (req, res, next) => {
       description: z.string().min(20).max(5000),
     }).parse(req.body);
 
-    const updated = await vaultService.transition(req.params.id, 'dispute', actorId, 'USER', { reason, description });
+    const updated = await vaultService.transition(req.params.id!, 'dispute', actorId, 'USER', { reason, description });
     res.json({ success: true, data: updated });
   } catch (error) {
     next(error);
@@ -220,7 +220,7 @@ router.post('/:id/dispute', authenticate, async (req, res, next) => {
 router.get('/:id/delivery-qr', authenticate, async (req, res, next) => {
   try {
     const actorId = (req as any).user.sub;
-    const token = await vaultService.generateDeliveryQR(req.params.id, actorId);
+    const token = await vaultService.generateDeliveryQR(req.params.id!, actorId);
     res.json({ success: true, data: { token } });
   } catch (error) {
     next(error);
@@ -285,7 +285,7 @@ router.get('/:id/audit', authenticate, async (req, res, next) => {
       throw new AppError('Forbidden', 403, 'FORBIDDEN');
     }
 
-    const logs = await vaultService.getAuditLogs(req.params.id);
+    const logs = await vaultService.getAuditLogs(req.params.id!);
     res.json({ success: true, data: logs });
   } catch (error) {
     next(error);
