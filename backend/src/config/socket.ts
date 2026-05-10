@@ -12,7 +12,7 @@ let PUBLIC_KEY = '';
 try {
   PUBLIC_KEY = process.env.JWT_PUBLIC_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/public.pem'), 'utf8');
 } catch (e) {
-  console.warn('[WARN] JWT_PUBLIC_KEY missing, socket authentication will fail.');
+  console.warn('[WARN] JWT_PUBLIC_KEY missing, socket authentication will fail. Error:', e);
 }
 
 

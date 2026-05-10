@@ -14,7 +14,7 @@ try {
   PRIVATE_KEY = process.env.JWT_PRIVATE_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/private.pem'), 'utf8');
   PUBLIC_KEY = process.env.JWT_PUBLIC_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/public.pem'), 'utf8');
 } catch (error) {
-  console.warn('[WARN] Could not load JWT RSA keys. JWT signing will fail if not provided via environment variables.');
+  console.warn('[WARN] Could not load JWT RSA keys. Error:', error);
 }
 
 // In-memory rate limiting for OTP
