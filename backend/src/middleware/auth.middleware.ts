@@ -25,10 +25,15 @@ try {
   if (process.env.JWT_PUBLIC_KEY) {
     PUBLIC_KEY = process.env.JWT_PUBLIC_KEY.replace(/\\n/g, '\n');
   } else {
-    PUBLIC_KEY = fs.readFileSync(path.join(keysDir, 'public.pem'), 'utf8');
+    const publicKeyPath = path.join(keysDir, 'public.pem');
+    if (fs.existsSync(publicKeyPath)) {
+      PUBLIC_KEY = fs.readFileSync(publicKeyPath, 'utf8');
+    } else {
+      console.warn('[WARN] JWT_PUBLIC_KEY environment variable not set and local file not found. Auth middleware will deny all requests.');
+    }
   }
 } catch (e) {
-  console.warn('[WARN] JWT_PUBLIC_KEY missing, auth middleware will deny all requests. Error:', e);
+  console.warn('[WARN] Error while loading JWT_PUBLIC_KEY for auth middleware:', e);
 }
 
 

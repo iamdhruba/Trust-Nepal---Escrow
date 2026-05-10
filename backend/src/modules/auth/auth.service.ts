@@ -32,16 +32,26 @@ try {
   if (process.env.JWT_PRIVATE_KEY) {
     PRIVATE_KEY = process.env.JWT_PRIVATE_KEY.replace(/\\n/g, '\n');
   } else {
-    PRIVATE_KEY = fs.readFileSync(path.join(keysDir, 'private.pem'), 'utf8');
+    const privateKeyPath = path.join(keysDir, 'private.pem');
+    if (fs.existsSync(privateKeyPath)) {
+      PRIVATE_KEY = fs.readFileSync(privateKeyPath, 'utf8');
+    } else {
+      console.warn('[WARN] JWT_PRIVATE_KEY environment variable not set and local file not found.');
+    }
   }
 
   if (process.env.JWT_PUBLIC_KEY) {
     PUBLIC_KEY = process.env.JWT_PUBLIC_KEY.replace(/\\n/g, '\n');
   } else {
-    PUBLIC_KEY = fs.readFileSync(path.join(keysDir, 'public.pem'), 'utf8');
+    const publicKeyPath = path.join(keysDir, 'public.pem');
+    if (fs.existsSync(publicKeyPath)) {
+      PUBLIC_KEY = fs.readFileSync(publicKeyPath, 'utf8');
+    } else {
+      console.warn('[WARN] JWT_PUBLIC_KEY environment variable not set and local file not found.');
+    }
   }
 } catch (error) {
-  console.warn('[WARN] JWT RSA keys not loaded from environment or local files. Error:', error);
+  console.warn('[WARN] Error while loading JWT RSA keys:', error);
 }
 
 // In-memory rate limiting for OTP
