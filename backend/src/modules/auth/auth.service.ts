@@ -7,8 +7,15 @@ import { UserModel } from '../user/user.model.js';
 import { UnauthorizedError, AppError } from '../../errors/AppError.js';
 import { getFirebaseAdmin } from '../../config/firebase.js';
 
-const PRIVATE_KEY = fs.readFileSync(path.join(process.cwd(), 'keys/private.pem'), 'utf8');
-const PUBLIC_KEY = fs.readFileSync(path.join(process.cwd(), 'keys/public.pem'), 'utf8');
+let PRIVATE_KEY = '';
+let PUBLIC_KEY = '';
+
+try {
+  PRIVATE_KEY = process.env.JWT_PRIVATE_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/private.pem'), 'utf8');
+  PUBLIC_KEY = process.env.JWT_PUBLIC_KEY?.replace(/\\n/g, '\n') || fs.readFileSync(path.join(process.cwd(), 'keys/public.pem'), 'utf8');
+} catch (error) {
+  console.warn('[WARN] Could not load JWT RSA keys. JWT signing will fail if not provided via environment variables.');
+}
 
 // In-memory rate limiting for OTP
 const otpRateLimit = new Map<string, { count: number, resetAt: number }>();
